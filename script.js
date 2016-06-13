@@ -15,6 +15,8 @@ var audio_files = [
   "9.mp3"
 ]
 
+//http://www.newgrounds.com/audio
+
 $(document).ready(function(){
 console.log("The document is ready the songs were loaded properly!");
 
@@ -35,19 +37,23 @@ function JukeBox(){
     if(isplaying == 'false'){
       isplaying = 'true';
       audioElement.play();
+      showAnimateBars();
       console.log("play pressed");
 
     }
     else if(isplaying == 'true'){
       isplaying = 'false';
       audioElement.pause();
+      hideAnimateBars();
       console.log("stop pressed");
     }
     }
 
   this.nextTrack = function(){
     isplaying = 'false';
-    if(currentSong < 10){
+    if(currentSong === 8){
+      currentSong = 0;
+    }else{
       console.log("isplaying: " + isplaying);
       currentSong = currentSong + 1;
       this.playTrack(currentSong);
@@ -56,7 +62,9 @@ function JukeBox(){
 
   this.playRequest = function(requestedSong){
   isplaying = 'false';
+//  $('#currentPlayingSong').html('<h1> currently playing' + requestedSong + '</h1>');
   this.playTrack(requestedSong);
+
   }
 }
 
@@ -76,6 +84,7 @@ $('#list').append('<li id="9thSong" onclick = "myJukePlayer.playRequest(8)">'+au
 $("#playTrack").on("click", function(){
   myJukePlayer.playTrack(currentSong);
 });
+
 $("#nextTrack").on("click", function(){
   myJukePlayer.nextTrack();
 });
@@ -84,4 +93,11 @@ $("#previousTrack").on("click", function(){
   myJukePlayer.previousTrack();
 });
 
+function showAnimateBars(){
+  $('#animateBars').html('<img src="http://i17.photobucket.com/albums/b51/kittykatt2005/Icons/animated/small%20icons/thmusicbar.gif" border="0" />');
+}
+
+function hideAnimateBars(){
+  $('#animateBars').html(' ');
+}
 });
