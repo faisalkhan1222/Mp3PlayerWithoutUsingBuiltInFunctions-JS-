@@ -15,9 +15,6 @@ var audio_files = [
   "9.mp3"
 ]
 
-
-//$('#list').html('<li id="1stSong">'+audio_files[0]+'</li>');
-
 $(document).ready(function(){
 console.log("The document is ready the songs were loaded properly!");
 
@@ -59,20 +56,24 @@ function JukeBox(){
       this.playTrack(currentSong);
     }
   }
+
+  this.playRequest = function(requestedSong){
+  isplaying = 'false';
+  this.playTrack(requestedSong);
+  }
 }
 
 myJukePlayer = new JukeBox();
 
-
-$('#list').append('<li id="1stSong" onclick = "myJukePlayer.playTrack(0)">'+audio_files[0]+'</li>');
-$('#list').append('<li id="2ndSong" onclick = "playTrack(1)">'+audio_files[1]+'</li>');
-$('#list').append('<li id="3rdSong" onclick = "playTrack(2)">'+audio_files[2]+'</li>');
-$('#list').append('<li id="4thSong" onclick = "playTrack(3)">'+audio_files[3]+'</li>');
-$('#list').append('<li id="5thSong" onclick = "playTrack(4)">'+audio_files[4]+'</li>');
-$('#list').append('<li id="6thSong" onclick = "playTrack(5)">'+audio_files[5]+'</li>');
-$('#list').append('<li id="7thSong" onclick = "playTrack(6)">'+audio_files[6]+'</li>');
-$('#list').append('<li id="8thSong" onclick = "playTrack(7)">'+audio_files[7]+'</li>');
-$('#list').append('<li id="9thSong" onclick = "playTrack(8)">'+audio_files[8]+'</li>');
+$('#list').append('<li id="1stSong" onclick = "myJukePlayer.playRequest(0)">'+audio_files[0]+'</li>');
+$('#list').append('<li id="2ndSong" onclick = "myJukePlayer.playRequest(1)">'+audio_files[1]+'</li>');
+$('#list').append('<li id="3rdSong" onclick = "myJukePlayer.playRequest(2)">'+audio_files[2]+'</li>');
+$('#list').append('<li id="4thSong" onclick = "myJukePlayer.playRequest(3)">'+audio_files[3]+'</li>');
+$('#list').append('<li id="5thSong" onclick = "myJukePlayer.playRequest(4)">'+audio_files[4]+'</li>');
+$('#list').append('<li id="6thSong" onclick = "myJukePlayer.playRequest(5)">'+audio_files[5]+'</li>');
+$('#list').append('<li id="7thSong" onclick = "myJukePlayer.playRequest(6)">'+audio_files[6]+'</li>');
+$('#list').append('<li id="8thSong" onclick = "myJukePlayer.playRequest(7)">'+audio_files[7]+'</li>');
+$('#list').append('<li id="9thSong" onclick = "myJukePlayer.playRequest(8)">'+audio_files[8]+'</li>');
 
 
 $("#playTrack").on("click", function(){
@@ -85,5 +86,6 @@ $("#nextTrack").on("click", function(){
 $("#previousTrack").on("click", function(){
   myJukePlayer.previousTrack();
 });
+
 
 });
