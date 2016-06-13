@@ -29,9 +29,7 @@ function JukeBox(){
     }
   }
 
-
   this.playTrack = function (currentSong){
-
     console.log("isplaying: " + isplaying);
     audioElement.setAttribute('src', audio_files[currentSong]);
     if(isplaying == 'false'){
@@ -46,7 +44,6 @@ function JukeBox(){
       console.log("stop pressed");
     }
     }
-
 
   this.nextTrack = function(){
     isplaying = 'false';
@@ -86,6 +83,5 @@ $("#nextTrack").on("click", function(){
 $("#previousTrack").on("click", function(){
   myJukePlayer.previousTrack();
 });
-
 
 });
