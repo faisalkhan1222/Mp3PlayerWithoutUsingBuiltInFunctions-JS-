@@ -23,7 +23,6 @@ function JukeBox(){
   this.previousTrack = function(){
     paused = 'false';
     if(currentSong > 0){
-      console.log("isplaying: " + isplaying);
       currentSong = currentSong - 1;
       this.playTrack(currentSong);
     }
