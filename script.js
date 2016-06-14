@@ -69,6 +69,12 @@ function JukeBox(){
 
   this.playTrack(requestedSong);
   }
+
+  this.randomTrack = function (){
+  paused = 'false';
+  var generatedSong = Math.floor((Math.random() * 8) + 1);
+  this.playTrack(generatedSong);
+  }
 }
 
 myJukePlayer = new JukeBox();
@@ -102,6 +108,10 @@ $("#nextTrack").on("click", function(){
 
 $("#previousTrack").on("click", function(){
   myJukePlayer.previousTrack();
+});
+
+$("#randomTrack").on("click", function(){
+  myJukePlayer.randomTrack();
 });
 
 function showAnimateBars(){
