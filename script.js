@@ -81,11 +81,11 @@ $(document).ready(function(){
     this.nextTrack = function(){
       paused = 'false';
       //check so that we dont cross the array boundary and reset the counter if we pass the limit of array
-      if(currentSong > 8){
+      if(currentSong >= 8){
         currentSong = -1;
       }
       //increase the trackcounter by one and pass it to the play function
-      if(currentSong < 8){
+      else{
         currentSong = currentSong + 1;
         this.playTrack(currentSong);
       }
@@ -139,7 +139,7 @@ $(document).ready(function(){
   $("#previousTrack").on("click", function(){
     myJukePlayer.previousTrack();
   });
-  
+
 //the red dice image on main page to generate random track
   $("#randomTrack").on("click", function(){
     myJukePlayer.randomTrack();
