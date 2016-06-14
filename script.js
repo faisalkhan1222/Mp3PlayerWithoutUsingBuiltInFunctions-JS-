@@ -45,7 +45,6 @@ function JukeBox(){
   hideAnimateBars();
   console.log("pause pressed");
   paused = 'true';
-
   }
 
   this.stopTrack = function (){
@@ -60,6 +59,9 @@ function JukeBox(){
     if(currentSong < 8){
       currentSong = currentSong + 1;
       this.playTrack(currentSong);
+    }
+    if(currentSong == 8){
+      currentSong = -1;
     }
   }
 
