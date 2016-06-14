@@ -1,8 +1,3 @@
-$("body").css("background-color" , "black");
-var currentSong = 0;
-var isplaying = 'false';
-var audioElement = document.createElement('audio');
-
 var audio_files = [
   "1.mp3",
   "2.mp3",
@@ -14,6 +9,9 @@ var audio_files = [
   "8.mp3",
   "9.mp3"
 ]
+var currentSong = 0;
+var paused = 'false';
+var audioElement = document.createElement('audio');
 
 //http://www.newgrounds.com/audio
 
@@ -23,7 +21,7 @@ console.log("The document is ready the songs were loaded properly!");
 function JukeBox(){
 
   this.previousTrack = function(){
-    isplaying = 'false';
+    paused = 'false';
     if(currentSong > 0){
       console.log("isplaying: " + isplaying);
       currentSong = currentSong - 1;
@@ -31,40 +29,45 @@ function JukeBox(){
     }
   }
 
-  this.playTrack = function (currentSong){
-    console.log("isplaying: " + isplaying);
-    audioElement.setAttribute('src', audio_files[currentSong]);
-    if(isplaying == 'false'){
-      isplaying = 'true';
+  this.playTrack = function (playThisSong){
+    currentSong = playThisSong;
+    console.log("paused: " + paused);
+
+    if(paused == 'false'){
+    audioElement.setAttribute('src', audio_files[playThisSong]);
+    }
       audioElement.play();
       showAnimateBars();
       console.log("play pressed");
+    }
 
-    }
-    else if(isplaying == 'true'){
-      isplaying = 'false';
-      audioElement.pause();
-      hideAnimateBars();
-      console.log("stop pressed");
-    }
-    }
+  this.pauseTrack = function (){
+  audioElement.pause();
+  hideAnimateBars();
+  console.log("pause pressed");
+  paused = 'true';
+
+  }
+
+  this.stopTrack = function (){
+  audioElement.pause();
+  hideAnimateBars();
+  console.log("stop pressed");
+  paused = 'false';
+  }
 
   this.nextTrack = function(){
-    isplaying = 'false';
-    if(currentSong === 8){
-      currentSong = 0;
-    }else{
-      console.log("isplaying: " + isplaying);
+    paused = 'false';
+    if(currentSong < 8){
       currentSong = currentSong + 1;
       this.playTrack(currentSong);
     }
   }
 
   this.playRequest = function(requestedSong){
-  isplaying = 'false';
-//  $('#currentPlayingSong').html('<h1> currently playing' + requestedSong + '</h1>');
-  this.playTrack(requestedSong);
+    paused = 'false';
 
+  this.playTrack(requestedSong);
   }
 }
 
@@ -83,6 +86,14 @@ $('#list').append('<li id="9thSong" onclick = "myJukePlayer.playRequest(8)">'+au
 
 $("#playTrack").on("click", function(){
   myJukePlayer.playTrack(currentSong);
+});
+
+$("#pauseTrack").on("click", function(){
+  myJukePlayer.pauseTrack();
+});
+
+$("#stopTrack").on("click", function(){
+  myJukePlayer.stopTrack();
 });
 
 $("#nextTrack").on("click", function(){
