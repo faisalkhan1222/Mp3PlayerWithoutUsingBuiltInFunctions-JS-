@@ -27,6 +27,20 @@ var paused = 'false';
 var audioElement = document.createElement('audio');
 
 
+function ChangeBackground(input)
+{
+  if (input.files && input.files[0]) 
+  {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('body').css('background', 'url('+e.target.result+')');
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
 $(document).ready(function(){
   console.log("The document is ready the songs were loaded properly!");
 
@@ -56,6 +70,18 @@ $(document).ready(function(){
       //function to show a simple animation to visually see if a track is playing
       showAnimateBars();
       console.log("play pressed");
+
+      //var selectedFile = $('#input').get(0).files[0];
+      //var img = document.createElement("img");
+      //img.file = selectedFile;
+      //$("#uploadedFile").append(selectedFile);
+
+
+
+     // var inputFiles = $('#input').get(0).files[0];
+     // console.log(inputFiles);
+     // var html = $("#uploadedFile").html('<img src = "'+ inputFiles +'" >');
+     // console.log(html);
     }
 
     //pause the current track
